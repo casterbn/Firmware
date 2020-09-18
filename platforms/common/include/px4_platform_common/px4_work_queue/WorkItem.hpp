@@ -61,7 +61,7 @@ public:
 	WorkItem &operator=(WorkItem &&) = delete;
 
 	// WorkItems sorted by name
-	bool operator<=(const WorkItem &rhs) const { return (strcmp(ItemName(), rhs.ItemName()) <= 0); }
+	bool operator<=(const WorkItem &rhs) const { return (run_count() <= rhs.run_count()); }
 
 	inline void ScheduleNow()
 	{
@@ -82,6 +82,8 @@ public:
 	bool ChangeWorkQeue(const wq_config_t &config) { return Init(config); }
 
 	const char *ItemName() const { return _item_name; }
+
+	uint32_t run_count() const { return _run_count; }
 
 protected:
 
